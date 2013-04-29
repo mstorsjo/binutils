@@ -20242,6 +20242,9 @@ relax_branch (fragS *fragp, asection *sec, int bits, long stretch)
   if ((ELF_ST_VISIBILITY (S_GET_OTHER (fragp->fr_symbol)) == STV_DEFAULT)
       && (! S_IS_LOCAL (fragp->fr_symbol)))
     return 4;
+#else
+  if (! S_IS_LOCAL (fragp->fr_symbol))
+    return 4;
 #endif
 
   val = relaxed_symbol_addr (fragp, stretch);
